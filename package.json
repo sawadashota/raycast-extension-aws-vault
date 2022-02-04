@@ -1,8 +1,8 @@
 {
   "$schema": "https://www.raycast.com/schemas/extension.json",
-  "name": "aws-vault",
-  "title": "aws-vault",
-  "description": "Open AWS in your browser via aws-vault",
+  "name": "raycast-extension-aws-vault",
+  "title": "raycast-extension-aws-vault",
+  "description": "Extension for Raycast which opens the AWS management console via aws-vault.",
   "icon": "command-icon.png",
   "author": "sawadashota",
   "license": "MIT",
@@ -10,7 +10,7 @@
     {
       "name": "index",
       "title": "aws-vault",
-      "description": "Open AWS in your browser via aws-vault",
+      "description": "Opens the AWS management console via aws-vault",
       "mode": "view"
     }
   ],
@@ -50,15 +50,15 @@
     "@raycast/api": "^1.27.1"
   },
   "devDependencies": {
-    "@types/node": "~16.10.0",
-    "@types/react": "^17.0.28",
-    "@typescript-eslint/eslint-plugin": "^5.0.0",
-    "@typescript-eslint/parser": "^5.0.0",
-    "eslint": "^7.32.0",
+    "@types/node": "~17.0.14",
+    "@types/react": "^17.0.39",
+    "@typescript-eslint/eslint-plugin": "^5.10.2",
+    "@typescript-eslint/parser": "^5.10.2",
+    "eslint": "^8.8.0",
     "eslint-config-prettier": "^8.3.0",
     "prettier": "^2.5.1",
-    "react-devtools": "^4.19.2",
-    "typescript": "^4.4.3"
+    "react-devtools": "^4.23.0",
+    "typescript": "^4.5.5"
   },
   "scripts": {
     "build": "ray build -e dist",
