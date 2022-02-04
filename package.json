@@ -1,0 +1,61 @@
+{
+  "$schema": "https://www.raycast.com/schemas/extension.json",
+  "name": "aws-vault",
+  "title": "aws-vault",
+  "description": "Open AWS in your browser via aws-vault",
+  "icon": "command-icon.png",
+  "author": "sawadashota",
+  "license": "MIT",
+  "commands": [
+    {
+      "name": "index",
+      "title": "aws-vault",
+      "description": "Open AWS in your browser via aws-vault",
+      "mode": "view"
+    }
+  ],
+  "preferences": [
+    {
+      "title": "Browser",
+      "data": [
+        {
+          "title": "Google Chrome",
+          "value": "Google Chrome"
+        },
+        {
+          "title": "firefox",
+          "value": "firefox"
+        },
+        {
+          "title": "Brave Browser",
+          "value": "Brave Browser"
+        }
+      ],
+      "default": "Google Chrome",
+      "name": "browserName",
+      "description": "Which browser to use.",
+      "type": "dropdown",
+      "required": true
+    }
+  ],
+  "dependencies": {
+    "@raycast/api": "^1.27.1"
+  },
+  "devDependencies": {
+    "@types/node": "~16.10.0",
+    "@types/react": "^17.0.28",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "prettier": "^2.5.1",
+    "react-devtools": "^4.19.2",
+    "typescript": "^4.4.3"
+  },
+  "scripts": {
+    "build": "ray build -e dist",
+    "dev": "ray develop",
+    "fix-lint": "ray lint --fix",
+    "lint": "ray lint"
+  }
+}
