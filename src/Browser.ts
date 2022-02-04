@@ -1,13 +1,20 @@
 import { BrowserName } from "./types";
 import { exec } from "child_process";
 
+interface BrowserConfig {
+  name: BrowserName;
+  entrypoint: string;
+}
+
 export class Browser {
+  readonly entrypoint: string;
   readonly browser: string;
   readonly profileArgFunc: (profile: string) => string;
 
-  constructor(name: BrowserName) {
-    this.browser = name;
-    switch (name) {
+  constructor(config: BrowserConfig) {
+    this.browser = config.name;
+    this.entrypoint = config.entrypoint;
+    switch (config.name) {
       case "Google Chrome":
         this.profileArgFunc = (profile) =>
           `--user-data-dir=$HOME/Library/Application\\ Support/Google/Chrome/aws-vault/${profile}`;
@@ -21,12 +28,12 @@ export class Browser {
           `--user-data-dir=$HOME/Library/Application\\ Support/BraveSoftware/Brave-Browser/aws-vault/${profile}`;
         break;
       default:
-        throw Error(`unknown browser: ${name}`);
+        throw Error(`unknown browser: ${config.name}`);
     }
   }
 
   public open(profile: string): void {
-    exec(`aws-vault login ${profile} --stdout`, (error, stdout, stderr) => {
+    exec(`${this.entrypoint} login ${profile} --stdout`, (error, stdout, stderr) => {
       if (error) {
         console.error(`error: ${error.message}`);
         return;
