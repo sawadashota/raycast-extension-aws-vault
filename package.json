@@ -36,6 +36,14 @@
       "description": "Which browser to use.",
       "type": "dropdown",
       "required": true
+    },
+    {
+      "title": "aws-vault entrypoint",
+      "default": "aws-vault",
+      "name": "entrypoint",
+      "description": "Entrypoint of aws-vault command. If default doesn't work, please set path to aws-vault.",
+      "type": "textfield",
+      "required": true
     }
   ],
   "dependencies": {

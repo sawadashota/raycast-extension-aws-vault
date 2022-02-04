@@ -1,4 +1,4 @@
-import { ActionPanel, Icon, List, getPreferenceValues } from "@raycast/api";
+import { ActionPanel, Icon, List, Detail, getPreferenceValues } from "@raycast/api";
 import React, { useEffect, useState } from "react";
 import { exec } from "child_process";
 import { BrowserName } from "./types";
@@ -6,21 +6,28 @@ import { Browser } from "./Browser";
 
 interface Preferences {
   browserName: BrowserName;
+  entrypoint: string;
 }
 
 export default function Command() {
   const preferences: Preferences = getPreferenceValues();
-  const browser = new Browser(preferences.browserName);
+  const browser = new Browser({
+    name: preferences.browserName,
+    ...preferences,
+  });
 
   const [profiles, setProfiles] = useState<string[]>([]);
+  const [errorMsg, setErrorMsg] = useState<string>("");
   useEffect(() => {
-    exec("aws-vault list", (error, stdout, stderr) => {
+    exec(`${preferences.entrypoint} list`, (error, stdout, stderr) => {
       if (error) {
         console.error(`error: ${error.message}`);
+        setErrorMsg(error.message);
         return;
       }
       if (stderr) {
         console.error(`stderr: ${stderr}`);
+        setErrorMsg(stderr);
         return;
       }
       const lines: string[] = stdout.split(/\n/);
@@ -32,6 +39,10 @@ export default function Command() {
       );
     });
   }, []);
+
+  if (errorMsg !== "") {
+    return <Detail markdown={errorMsg} />;
+  }
 
   const onClick = (profile: string) => (): void => browser.open(profile);
 
