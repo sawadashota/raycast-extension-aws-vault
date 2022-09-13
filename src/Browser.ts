@@ -36,11 +36,7 @@ export class Browser {
   public open(profile: string): void {
     exec(`${this.entrypoint} login ${profile} --stdout`, (error, stdout, stderr) => {
       if (error) {
-        showToast(
-          ToastStyle.Failure,
-          "Error while running aws-vault login",
-          error.message,
-        );
+        showToast(ToastStyle.Failure, "Error while running aws-vault login", error.message);
         console.error(`error: ${error.message}`);
         return;
       }
